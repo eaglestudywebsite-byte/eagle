@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now - Eagle Study Loan</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --royal-blue: #0a1f44;
+            --gold: #f5c542;
+            --white: #ffffff;
+            --silver: #d4d4d4;
+            --light-blue: #1e3a8a;
+            --light-gray: #f5f5f5;
+            --dark-gray: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--royal-blue);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--royal-blue);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        header.sticky {
+            padding: 0.7rem 2rem;
+            background-color: rgba(10, 31, 68, 0.95);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 60px;
+            margin-right: 12px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo-text {
+            color: var(--white);
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Page Title Banner */
+        .page-banner {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--light-blue) 100%);
+            padding: 120px 2rem 60px;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        .page-banner h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Application Form */
+        .application-container {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 4px;
+            width: 100%;
+            background-color: var(--silver);
+            z-index: 1;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 4px;
+            width: 0%;
+            background-color: var(--gold);
+            z-index: 1;
+            transition: width 0.5s ease;
+        }
+
+        .progress-step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--silver);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active {
+            background-color: var(--gold);
+            color: var(--royal-blue);
+        }
+
+        .progress-step.completed {
+            background-color: var(--royal-blue);
+            color: var(--white);
+        }
+
+        .step-label {
+            position: absolute;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .step-label.active {
+            color: var(--royal-blue);
+            font-weight: 500;
+        }
+
+        .form-section {
+            display: none;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--royal-blue);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title h2 i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--royal-blue);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--silver);
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--royal-blue);
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(245, 197, 66, 0.2);
+        }
+
+        .form-group .required::after {
+            content: '*';
+            color: #e74c3c;
+            margin-left: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gold);
+            color: var(--royal-blue);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-large {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--royal-blue);
+            color: var(--royal-blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--royal-blue);
+            color: var(--white);
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .co-applicant-section {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 2px dashed var(--light-gray);
+        }
+
+        .co-applicant-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .co-applicant-header h3 {
+            font-size: 1.4rem;
+            color: var(--royal-blue);
+            margin-left: 10px;
+        }
+
+        .co-applicant-header i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        /* Form Status Message */
+        .form-status {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .form-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        
+        .form-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--royal-blue);
+            color: var(--white);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4:after, .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--silver);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--gold);
+            color: var(--royal-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                gap: 0;
+                flex-direction: column;
+                background-color: var(--royal-blue);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .page-banner h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            .progress-bar {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .progress-bar::before, .progress-bar::after {
+                display: none;
+            }
+
+            .progress-step {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-banner h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+            }
+
+            .form-section {
+                padding: 1.5rem;
+            }
+
+            .form-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-navigation .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/eaglestudywebsite-byte/logo/refs/heads/main/WhatsApp_Image_2025-08-27_at_13.46.35_fa5e1612-removebg-preview.webp" alt="Eagle Study Loan Logo" class="logo-img">
+                <span class="logo-text">Eagle Study Loan</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="apply.html" class="btn">Apply Now</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <h1>Education Loan Application</h1>
+        <p>Complete this form to apply for your education loan. Please have your personal, academic, and financial information ready.</p>
+    </section>
+
+    <!-- Application Form -->
+    <div class="application-container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step completed" id="step-1">
+                <span>1</span>
+                <span class="step-label active">Personal Info</span>
+            </div>
+            <div class="progress-step active" id="step-2">
+                <span>2</span>
+                <span class="step-label">Academic Details</span>
+            </div>
+            <div class="progress-step" id="step-3">
+                <span>3</span>
+                <span class="step-label">Loan Requirements</span>
+            </div>
+            <div class="progress-step" id="step-4">
+                <span>4</span>
+                <span class="step-label">Co-Applicants</span>
+            </div>
+            <div class="progress-step" id="step-5">
+                <span>5</span>
+                <span class="step-label">Review & Submit</span>
+            </div>
+        </div>
+
+        <!-- Form Sections -->
+        <form id="loan-application" action="https://formspree.io/f/xgvlvdpv" method="POST">
+            <!-- Section 1: Personal Information -->
+            <div class="form-section active" id="section-1">
+                <div class="section-title">
+                    <h2><i class="fas fa-user"></i> Personal Information</h2>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="full-name" class="required">Full Name</label>
+                        <input type="text" id="full-name" name="full_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob" class="required">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender" class="required">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nationality" class="required">Nationality</label>
+                        <input type="text" id="nationality" name="nationality" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="required">Permanent Address</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city" class="required">City</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state" class="required">State</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pincode" class="required">PIN Code</label>
+                        <input type="text" id="pincode" name="pincode" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parent-name" class="required">Parent/Guardian Name</label>
+                        <input type="text" id="parent-name" name="parent_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parent-phone" class="required">Parent/Guardian Phone</label>
+                        <input type="tel" id="parent-phone" name="parent_phone" required>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <div></div> <!-- Empty div for spacing -->
+                    <button type="button" class="btn" onclick="showSection(2)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Section 2: Academic Details -->
+            <div class="form-section" id="section-2">
+                <div class="section-title">
+                    <h2><i class="fas fa-graduation-cap"></i> Academic Details</h2>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="current-education" class="required">Current Education Level</label>
+                        <select id="current-education" name="current_education" required>
+                            <option value="">Select Education Level</option>
+                            <option value="high_school">High School</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                            <option value="phd">PhD</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institution" class="required">Current/Last Institution</label>
+                        <input type="text" id="institution" name="institution" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="percentage" class="required">Percentage/CGPA</label>
+                        <input type="text" id="percentage" name="percentage" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="year-of-passing" class="required">Year of Passing</label>
+                        <input type="number" id="year-of-passing" name="year_of_passing" min="1990" max="2030" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="intended-degree" class="required">Intended Degree</label>
+                        <select id="intended-degree" name="intended_degree" required>
+                            <option value="">Select Degree</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                            <option value="phd">PhD</option>
+                            <option value="diploma">Diploma/Certificate</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="field-of-study" class="required">Field of Study</label>
+                        <input type="text" id="field-of-study" name="field_of_study" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="university" class="required">University Name</label>
+                        <input type="text" id="university" name="university" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination-country" class="required">Destination Country</label>
+                        <select id="destination-country" name="destination_country" required>
+                            <option value="">Select Country</option>
+                            <option value="usa">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="canada">Canada</option>
+                            <option value="australia">Australia</option>
+                            <option value="germany">Germany</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course-duration" class="required">Course Duration (months)</label>
+                        <input type="number" id="course-duration" name="course_duration" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course-start" class="required">Course Start Date</label>
+                        <input type="month" id="course-start" name="course_start" required>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-outline" onclick="showSection(1)"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button type="button" class="btn" onclick="showSection(3)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Section 3: Loan Requirements -->
+            <div class="form-section" id="section-3">
+                <div class="section-title">
+                    <h2><i class="fas fa-money-bill-wave"></i> Loan Requirements</h2>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="total-expenses" class="required">Total Estimated Expenses (₹)</label>
+                        <input type="number" id="total-expenses" name="total_expenses" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loan-amount" class="required">Loan Amount Required (₹)</label>
+                        <input type="number" id="loan-amount" name="loan_amount" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="existing-funds" class="required">Existing Funds Available (₹)</label>
+                        <input type="number" id="existing-funds" name="existing_funds" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="repayment-plan" class="required">Preferred Repayment Plan</label>
+                        <select id="repayment-plan" name="repayment_plan" required>
+                            <option value="">Select Plan</option>
+                            <option value="standard">Standard (EMI during moratorium)</option>
+                            <option value="interest_only">Interest Only during study period</option>
+                            <option value="deferred">Fully Deferred (EMI after course completion)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loan-tenure" class="required">Preferred Loan Tenure (years)</label>
+                        <select id="loan-tenure" name="loan_tenure" required>
+                            <option value="">Select Tenure</option>
+                            <option value="5">5 years</option>
+                            <option value="7">7 years</option>
+                            <option value="10">10 years</option>
+                            <option value="12">12 years</option>
+                            <option value="15">15 years</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="other-financing" class="required">Other Financing Sources</label>
+                        <select id="other-financing" name="other_financing" required>
+                            <option value="">Select Option</option>
+                            <option value="none">No other financing</option>
+                            <option value="scholarship">Scholarship</option>
+                            <option value="family">Family Support</option>
+                            <option value="other_loan">Other Loan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-outline" onclick="showSection(2)"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button type="button" class="btn" onclick="showSection(4)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Section 4: Co-Applicant Information -->
+            <div class="form-section" id="section-4">
+                <div class="section-title">
+                    <h2><i class="fas fa-users"></i> Co-Applicant Information</h2>
+                    <p>Please provide details for two co-applicants (typically parents or guardians)</p>
+                </div>
+
+                <!-- Co-Applicant 1 -->
+                <div class="co-applicant-section">
+                    <div class="co-applicant-header">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Co-Applicant 1</h3>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="co1-name" class="required">Full Name</label>
+                            <input type="text" id="co1-name" name="co1_name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co1-relation" class="required">Relationship</label>
+                            <select id="co1-relation" name="co1_relation" required>
+                                <option value="">Select Relationship</option>
+                                <option value="father">Father</option>
+                                <option value="mother">Mother</option>
+                                <option value="spouse">Spouse</option>
+                                <option value="sibling">Sibling</option>
+                                <option value="other_relative">Other Relative</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co1-dob" class="required">Date of Birth</label>
+                            <input type="date" id="co1-dob" name="co1_dob" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co1-phone" class="required">Phone Number</label>
+                            <input type="tel" id="co1-phone" name="co1_phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co1-email">Email Address</label>
+                            <input type="email" id="co1-email" name="co1_email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co1-occupation" class="required">Occupation</label>
+                            <input type="text" id="co1-occupation" name="co1_occupation" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co1-annual-income" class="required">Annual Income (₹)</label>
+                            <input type="number" id="co1-annual-income" name="co1_annual_income" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co1-address">Address (if different from applicant)</label>
+                            <textarea id="co1-address" name="co1_address" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Co-Applicant 2 -->
+                <div class="co-applicant-section">
+                    <div class="co-applicant-header">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Co-Applicant 2</h3>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="co2-name">Full Name</label>
+                            <input type="text" id="co2-name" name="co2_name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co2-relation">Relationship</label>
+                            <select id="co2-relation" name="co2_relation">
+                                <option value="">Select Relationship</option>
+                                <option value="father">Father</option>
+                                <option value="mother">Mother</option>
+                                <option value="spouse">Spouse</option>
+                                <option value="sibling">Sibling</option>
+                                <option value="other_relative">Other Relative</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co2-dob">Date of Birth</label>
+                            <input type="date" id="co2-dob" name="co2_dob">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co2-phone">Phone Number</label>
+                            <input type="tel" id="co2-phone" name="co2_phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co2-email">Email Address</label>
+                            <input type="email" id="co2-email" name="co2_email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co2-occupation">Occupation</label>
+                            <input type="text" id="co2-occupation" name="co2_occupation">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co2-annual-income">Annual Income (₹)</label>
+                            <input type="number" id="co2-annual-income" name="co2_annual_income" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="co2-address">Address (if different from applicant)</label>
+                            <textarea id="co2-address" name="co2_address" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-outline" onclick="showSection(3)"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button type="button" class="btn" onclick="showSection(5)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Section 5: Review & Submit -->
+            <div class="form-section" id="section-5">
+                <div class="section-title">
+                    <h2><i class="fas fa-check-circle"></i> Review & Submit</h2>
+                    <p>Please review your information before submitting your application</p>
+                </div>
+
+                <div class="review-section">
+                    <h3>Personal Information</h3>
+                    <div class="review-grid" id="review-personal">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <h3>Academic Details</h3>
+                    <div class="review-grid" id="review-academic">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <h3>Loan Requirements</h3>
+                    <div class="review-grid" id="review-loan">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <h3>Co-Applicant Information</h3>
+                    <div class="review-grid" id="review-coapplicant">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms" class="required">I hereby declare that all the information provided is true to the best of my knowledge. I have read and agree to the <a href="#">terms and conditions</a>.</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-status" id="form-status"></div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-outline" onclick="showSection(4)"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button type="submit" class="btn btn-large">Submit Application</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="https://raw.githubusercontent.com/eaglestudywebsite-byte/logo/refs/heads/main/WhatsApp_Image_2025-08-27_at_13.46.35_fa5e1612-removebg-preview.webp" alt="Eagle Study Loan Logo" class="logo-img">
+                    <span class="logo-text">Eagle Study Loan</span>
+                </div>
+                <p>Eagle Study Loan is committed to helping students achieve their global education dreams through flexible and accessible financing solutions.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-phone"></i> <span class="highlight">+91 77105 11322</span></p>
+                <p><i class="fas fa-envelope"></i> <span class="highlight">info@eaglestudyloan.com</span></p>
+                <p><i class="fas fa-map-marker-alt"></i> <span class="highlight">2nd Floor Royal Hights Building,<br>Jain Nagar Crossing, Hanumangarh Road,<br>Abohar (152116), Punjab, India</span></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Eagle Study Loan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form Navigation
+        let currentSection = 1;
+        const totalSections = 5;
+
+        function showSection(sectionNumber) {
+            // Validate current section before proceeding
+            if (sectionNumber > currentSection && !validateSection(currentSection)) {
+                return;
+            }
+
+            // Hide current section
+            document.getElementById(`section-${currentSection}`).classList.remove('active');
+            document.getElementById(`step-${currentSection}`).classList.remove('active');
+
+            // Update current section
+            currentSection = sectionNumber;
+
+            // Show new section
+            document.getElementById(`section-${currentSection}`).classList.add('active');
+            document.getElementById(`step-${currentSection}`).classList.add('active');
+
+            // Mark previous steps as completed
+            for (let i = 1; i < currentSection; i++) {
+                document.getElementById(`step-${i}`).classList.add('completed');
+            }
+
+            // Update progress bar
+            const progressPercentage = ((currentSection - 1) / (totalSections - 1)) * 100;
+            document.querySelector('.progress-bar::after').style.width = `${progressPercentage}%`;
+
+            // If we're on the review section, populate the review
+            if (currentSection === 5) {
+                populateReview();
+            }
+
+            // Scroll to top of form
+            document.getElementById(`section-${currentSection}`).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function validateSection(sectionNumber) {
+            const inputs = document.querySelectorAll(`#section-${sectionNumber} [required]`);
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#e74c3c';
+                    
+                    // Add event listener to remove error style when user starts typing
+                    input.addEventListener('input', function() {
+                        this.style.borderColor = '';
+                    });
+                }
+            });
+
+            if (!isValid) {
+                alert('Please fill in all required fields before proceeding.');
+            }
+
+            return isValid;
+        }
+
+        function populateReview() {
+            // Personal Information
+            const personalFields = ['full_name', 'email', 'phone', 'dob', 'gender', 'nationality', 'address', 'city', 'state', 'pincode', 'parent_name', 'parent_phone'];
+            const personalContainer = document.getElementById('review-personal');
+            personalContainer.innerHTML = '';
+
+            personalFields.forEach(field => {
+                const value = document.querySelector(`[name="${field}"]`).value;
+                if (value) {
+                    const label = document.querySelector(`[name="${field}"]`).previousElementSibling.textContent.replace('*', '');
+                    personalContainer.innerHTML += `
+                        <div class="review-item">
+                            <strong>${label}:</strong> ${value}
+                        </div>
+                    `;
+                }
+            });
+
+            // Academic Details
+            const academicFields = ['current_education', 'institution', 'percentage', 'year_of_passing', 'intended_degree', 'field_of_study', 'university', 'destination_country', 'course_duration', 'course_start'];
+            const academicContainer = document.getElementById('review-academic');
+            academicContainer.innerHTML = '';
+
+            academicFields.forEach(field => {
+                const value = document.querySelector(`[name="${field}"]`).value;
+                if (value) {
+                    const label = document.querySelector(`[name="${field}"]`).previousElementSibling.textContent.replace('*', '');
+                    academicContainer.innerHTML += `
+                        <div class="review-item">
+                            <strong>${label}:</strong> ${value}
+                        </div>
+                    `;
+                }
+            });
+
+            // Loan Requirements
+            const loanFields = ['total_expenses', 'loan_amount', 'existing_funds', 'repayment_plan', 'loan_tenure', 'other_financing'];
+            const loanContainer = document.getElementById('review-loan');
+            loanContainer.innerHTML = '';
+
+            loanFields.forEach(field => {
+                const value = document.querySelector(`[name="${field}"]`).value;
+                if (value) {
+                    const label = document.querySelector(`[name="${field}"]`).previousElementSibling.textContent.replace('*', '');
+                    loanContainer.innerHTML += `
+                        <div class="review-item">
+                            <strong>${label}:</strong> ${value}
+                        </div>
+                    `;
+                }
+            });
+
+            // Co-Applicants
+            const coApplicantFields = ['co1_name', 'co1_relation', 'co1_dob', 'co1_phone', 'co1_email', 'co1_occupation', 'co1_annual_income', 'co1_address', 'co2_name', 'co2_relation', 'co2_dob', 'co2_phone', 'co2_email', 'co2_occupation', 'co2_annual_income', 'co2_address'];
+            const coApplicantContainer = document.getElementById('review-coapplicant');
+            coApplicantContainer.innerHTML = '';
+
+            coApplicantFields.forEach(field => {
+                const value = document.querySelector(`[name="${field}"]`).value;
+                if (value) {
+                    const label = document.querySelector(`[name="${field}"]`).previousElementSibling.textContent.replace('*', '');
+                    coApplicantContainer.innerHTML += `
+                        <div class="review-item">
+                            <strong>${label}:</strong> ${value}
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        // Form submission with Formspree
+        const form = document.getElementById('loan-application');
+        const formStatus = document.getElementById('form-status');
+        
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+            
+            try {
+                const formData = new FormData(event.target);
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    formStatus.textContent = "Thank you for your application! We'll contact you shortly.";
+                    formStatus.classList.add('success');
+                    form.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                formStatus.textContent = "Oops! There was a problem submitting your form. Please try again or contact us directly.";
+                formStatus.classList.add('error');
+            } finally {
+                // Restore button state
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+                
+                // Hide status message after 5 seconds
+                setTimeout(() => {
+                    formStatus.style.display = 'none';
+                    formStatus.classList.remove('success', 'error');
+                }, 5000);
+            }
+        }
+        
+        form.addEventListener("submit", handleSubmit);
+
+        // Add some CSS for the review section
+        const style = document.createElement('style');
+        style.textContent = `
+            .review-section {
+                margin-bottom: 2rem;
+            }
+            
+            .review-section h3 {
+                margin: 1.5rem 0 1rem;
+                color: var(--royal-blue);
+                font-size: 1.3rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            
+            .review-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .review-item {
+                padding: 0.8rem;
+                background-color: var(--light-gray);
+                border-radius: 8px;
+            }
+            
+            .checkbox {
+                display: flex;
+                align-items: flex-start;
+                margin-top: 1.5rem;
+            }
+            
+            .checkbox input {
+                margin-right: 10px;
+                margin-top: 5px;
+            }
+            
+            .checkbox label {
+                font-weight: normal;
+                line-height: 1.5;
+            }
+            
+            .checkbox a {
+                color: var(--royal-blue);
+                text-decoration: underline;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
