@@ -397,6 +397,41 @@
             display: block;
         }
 
+        /* Review Section */
+        .review-section {
+            margin-bottom: 2rem;
+        }
+
+        .review-section h3 {
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            color: var(--royal-blue);
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-item {
+            padding: 0.8rem;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .review-label {
+            font-weight: 600;
+            color: var(--royal-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .review-value {
+            color: var(--dark-gray);
+        }
+
         /* Footer */
         footer {
             background: var(--royal-blue);
@@ -664,6 +699,9 @@
             </div>
         </div>
 
+        <!-- Form Status Message -->
+        <div class="form-status" id="form-status"></div>
+
         <!-- Form Sections -->
         <form id="loan-application" action="https://formspree.io/f/xgvlvdpv" method="POST">
             <!-- Section 1: Personal Information -->
@@ -741,7 +779,7 @@
 
                 <div class="form-navigation">
                     <div></div> <!-- Empty div for spacing -->
-                    <button type="button" class="btn" onclick="showSection(2)">Next <i class="fas fa-arrow-right"></i></button>
+                    <button type="button" class="btn" onclick="validateSection(1)">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
 
@@ -826,7 +864,7 @@
 
                 <div class="form-navigation">
                     <button type="button" class="btn btn-outline" onclick="showSection(1)"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button type="button" class="btn" onclick="showSection(3)">Next <i class="fas fa-arrow-right"></i></button>
+                    <button type="button" class="btn" onclick="validateSection(2)">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
 
@@ -888,7 +926,7 @@
 
                 <div class="form-navigation">
                     <button type="button" class="btn btn-outline" onclick="showSection(2)"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button type="button" class="btn" onclick="showSection(4)">Next <i class="fas fa-arrow-right"></i></button>
+                    <button type="button" class="btn" onclick="validateSection(3)">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
 
@@ -1017,7 +1055,7 @@
 
                 <div class="form-navigation">
                     <button type="button" class="btn btn-outline" onclick="showSection(3)"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button type="button" class="btn" onclick="showSection(5)">Next <i class="fas fa-arrow-right"></i></button>
+                    <button type="button" class="btn" onclick="validateSection(4)">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
 
@@ -1048,20 +1086,11 @@
                     <div class="review-grid" id="review-coapplicant">
                         <!-- Will be populated by JavaScript -->
                     </div>
-
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms" class="required">I hereby declare that all the information provided is true to the best of my knowledge. I have read and agree to the <a href="#">terms and conditions</a>.</label>
-                        </div>
-                    </div>
                 </div>
-
-                <div class="form-status" id="form-status"></div>
 
                 <div class="form-navigation">
                     <button type="button" class="btn btn-outline" onclick="showSection(4)"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button type="submit" class="btn btn-large">Submit Application</button>
+                    <button type="submit" class="btn" id="submit-button">Submit Application <i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         </form>
@@ -1075,7 +1104,7 @@
                     <img src="https://raw.githubusercontent.com/eaglestudywebsite-byte/logo/refs/heads/main/WhatsApp_Image_2025-08-27_at_13.46.35_fa5e1612-removebg-preview.webp" alt="Eagle Study Loan Logo" class="logo-img">
                     <span class="logo-text">Eagle Study Loan</span>
                 </div>
-                <p>Eagle Study Loan is committed to helping students achieve their global education dreams through flexible and accessible financing solutions.</p>
+                <p>Empowering students to achieve their academic dreams through accessible education financing solutions.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1083,41 +1112,253 @@
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
+                    <li><a href="loan-options.html">Loan Options</a></li>
+                    <li><a href="eligibility.html">Eligibility</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="apply.html">Apply Now</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </div>
+
             <div class="footer-contact">
                 <h4>Contact Us</h4>
-                <p><i class="fas fa-phone"></i> <span class="highlight">+91 77105 11322</span></p>
-                <p><i class="fas fa-envelope"></i> <span class="highlight">info@eaglestudyloan.com</span></p>
-                <p><i class="fas fa-map-marker-alt"></i> <span class="highlight">2nd Floor Royal Hights Building,<br>Jain Nagar Crossing, Hanumangarh Road,<br>Abohar (152116), Punjab, India</span></p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Education Lane, Financial District, Mumbai 400001</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@eaglestudyloan.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM, Sat: 10AM - 2PM</p>
             </div>
         </div>
+
         <div class="copyright">
-            <p>&copy; 2023 Eagle Study Loan. All Rights Reserved.</p>
+            <p>&copy; 2025 Eagle Study Loan. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- JavaScript -->
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
+        // DOM Elements
+        const form = document.getElementById('loan-application');
+        const formSections = document.querySelectorAll('.form-section');
+        const progressSteps = document.querySelectorAll('.progress-step');
+        const formStatus = document.getElementById('form-status');
+        const submitButton = document.getElementById('submit-button');
+
+        // Current section tracker
+        let currentSection = 1;
+
+        // Navigation functions
+        function showSection(sectionNumber) {
+            // Hide all sections
+            formSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(`section-${sectionNumber}`).classList.add('active');
+            
+            // Update progress steps
+            updateProgressBar(sectionNumber);
+            
+            // Update current section
+            currentSection = sectionNumber;
+            
+            // If showing the review section, populate it with data
+            if (sectionNumber === 5) {
+                populateReviewSection();
+            }
+        }
+
+        function validateSection(sectionNumber) {
+            const currentSectionElement = document.getElementById(`section-${sectionNumber}`);
+            const inputs = currentSectionElement.querySelectorAll('input, select, textarea');
+            let isValid = true;
+            
+            // Check each required field
+            inputs.forEach(input => {
+                if (input.hasAttribute('required') && !input.value) {
+                    input.style.borderColor = '#e74c3c';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = '';
+                }
+            });
+            
+            // If valid, proceed to next section
+            if (isValid) {
+                showSection(sectionNumber + 1);
+            } else {
+                showFormStatus('Please fill in all required fields', 'error');
+                // Scroll to the first error
+                const firstError = currentSectionElement.querySelector('input:invalid, select:invalid, textarea:invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        function updateProgressBar(currentStep) {
+            // Reset all steps
+            progressSteps.forEach(step => {
+                step.classList.remove('active', 'completed');
+            });
+            
+            // Update progress bar
+            const progressBar = document.querySelector('.progress-bar');
+            const progressPercentage = ((currentStep - 1) / 4) * 100;
+            progressBar.style.setProperty('--progress', `${progressPercentage}%`);
+            
+            // Update steps
+            for (let i = 1; i <= 5; i++) {
+                const step = document.getElementById(`step-${i}`);
+                if (i < currentStep) {
+                    step.classList.add('completed');
+                } else if (i === currentStep) {
+                    step.classList.add('active');
+                }
+            }
+        }
+
+        function populateReviewSection() {
+            // Personal Information
+            const personalData = [
+                { label: 'Full Name', value: document.getElementById('full-name').value },
+                { label: 'Email', value: document.getElementById('email').value },
+                { label: 'Phone', value: document.getElementById('phone').value },
+                { label: 'Date of Birth', value: document.getElementById('dob').value },
+                { label: 'Gender', value: document.getElementById('gender').value },
+                { label: 'Nationality', value: document.getElementById('nationality').value },
+                { label: 'Address', value: document.getElementById('address').value },
+                { label: 'City', value: document.getElementById('city').value },
+                { label: 'State', value: document.getElementById('state').value },
+                { label: 'PIN Code', value: document.getElementById('pincode').value },
+                { label: 'Parent/Guardian Name', value: document.getElementById('parent-name').value },
+                { label: 'Parent/Guardian Phone', value: document.getElementById('parent-phone').value }
+            ];
+            
+            // Academic Details
+            const academicData = [
+                { label: 'Current Education Level', value: document.getElementById('current-education').value },
+                { label: 'Institution', value: document.getElementById('institution').value },
+                { label: 'Percentage/CGPA', value: document.getElementById('percentage').value },
+                { label: 'Year of Passing', value: document.getElementById('year-of-passing').value },
+                { label: 'Intended Degree', value: document.getElementById('intended-degree').value },
+                { label: 'Field of Study', value: document.getElementById('field-of-study').value },
+                { label: 'University', value: document.getElementById('university').value },
+                { label: 'Destination Country', value: document.getElementById('destination-country').value },
+                { label: 'Course Duration', value: document.getElementById('course-duration').value + ' months' },
+                { label: 'Course Start Date', value: document.getElementById('course-start').value }
+            ];
+            
+            // Loan Requirements
+            const loanData = [
+                { label: 'Total Estimated Expenses', value: '₹' + document.getElementById('total-expenses').value },
+                { label: 'Loan Amount Required', value: '₹' + document.getElementById('loan-amount').value },
+                { label: 'Existing Funds Available', value: '₹' + document.getElementById('existing-funds').value },
+                { label: 'Repayment Plan', value: document.getElementById('repayment-plan').value },
+                { label: 'Loan Tenure', value: document.getElementById('loan-tenure').value + ' years' },
+                { label: 'Other Financing Sources', value: document.getElementById('other-financing').value }
+            ];
+            
+            // Co-Applicant Information
+            const coApplicantData = [
+                { label: 'Co-Applicant 1 Name', value: document.getElementById('co1-name').value },
+                { label: 'Relationship', value: document.getElementById('co1-relation').value },
+                { label: 'Date of Birth', value: document.getElementById('co1-dob').value },
+                { label: 'Phone', value: document.getElementById('co1-phone').value },
+                { label: 'Email', value: document.getElementById('co1-email').value || 'Not provided' },
+                { label: 'Occupation', value: document.getElementById('co1-occupation').value },
+                { label: 'Annual Income', value: '₹' + document.getElementById('co1-annual-income').value },
+                { label: 'Address', value: document.getElementById('co1-address').value || 'Same as applicant' },
+                { label: 'Co-Applicant 2 Name', value: document.getElementById('co2-name').value || 'Not provided' },
+                { label: 'Relationship', value: document.getElementById('co2-relation').value || 'Not provided' }
+            ];
+            
+            // Function to populate a review section
+            function populateReviewSectionElement(elementId, data) {
+                const element = document.getElementById(elementId);
+                element.innerHTML = '';
+                
+                data.forEach(item => {
+                    if (item.value) {
+                        const reviewItem = document.createElement('div');
+                        reviewItem.className = 'review-item';
+                        reviewItem.innerHTML = `
+                            <div class="review-label">${item.label}</div>
+                            <div class="review-value">${item.value}</div>
+                        `;
+                        element.appendChild(reviewItem);
+                    }
+                });
+            }
+            
+            // Populate all review sections
+            populateReviewSectionElement('review-personal', personalData);
+            populateReviewSectionElement('review-academic', academicData);
+            populateReviewSectionElement('review-loan', loanData);
+            populateReviewSectionElement('review-coapplicant', coApplicantData);
+        }
+
+        function showFormStatus(message, type) {
+            formStatus.textContent = message;
+            formStatus.className = 'form-status ' + type;
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 5000);
+        }
+
+        // Form submission handler
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Disable submit button to prevent multiple submissions
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Submitting <i class="fas fa-spinner fa-spin"></i>';
+            
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showFormStatus('Your application has been submitted successfully! We will contact you soon.', 'success');
+                    form.reset();
+                    
+                    // Redirect to thank you page after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = 'thank-you.html';
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                showFormStatus('There was an error submitting your application. Please try again.', 'error');
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'Submit Application <i class="fas fa-paper-plane"></i>';
+            }
         });
 
-        // Sticky Header
-        window.addEventListener('scroll', function() {
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Sticky header
+        window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
                 header.classList.add('sticky');
@@ -1126,253 +1367,8 @@
             }
         });
 
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Form Navigation
-        let currentSection = 1;
-        const totalSections = 5;
-
-        function showSection(sectionNumber) {
-            // Validate current section before proceeding
-            if (sectionNumber > currentSection && !validateSection(currentSection)) {
-                return;
-            }
-
-            // Hide current section
-            document.getElementById(`section-${currentSection}`).classList.remove('active');
-            document.getElementById(`step-${currentSection}`).classList.remove('active');
-
-            // Update current section
-            currentSection = sectionNumber;
-
-            // Show new section
-            document.getElementById(`section-${currentSection}`).classList.add('active');
-            document.getElementById(`step-${currentSection}`).classList.add('active');
-
-            // Mark previous steps as completed
-            for (let i = 1; i < currentSection; i++) {
-                document.getElementById(`step-${i}`).classList.add('completed');
-            }
-
-            // Update progress bar
-            const progressPercentage = ((currentSection - 1) / (totalSections - 1)) * 100;
-            document.querySelector('.progress-bar::after').style.width = `${progressPercentage}%`;
-
-            // If we're on the review section, populate the review
-            if (currentSection === 5) {
-                populateReview();
-            }
-
-            // Scroll to top of form
-            document.getElementById(`section-${currentSection}`).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function validateSection(sectionNumber) {
-            const inputs = document.querySelectorAll(`#section-${sectionNumber} [required]`);
-            let isValid = true;
-
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = '#e74c3c';
-                    
-                    // Add event listener to remove error style when user starts typing
-                    input.addEventListener('input', function() {
-                        this.style.borderColor = '';
-                    });
-                }
-            });
-
-            if (!isValid) {
-                alert('Please fill in all required fields before proceeding.');
-            }
-
-            return isValid;
-        }
-
-        function populateReview() {
-            // Personal Information
-            const personalFields = ['full_name', 'email', 'phone', 'dob', 'gender', 'nationality', 'address', 'city', 'state', 'pincode', 'parent_name', 'parent_phone'];
-            const personalContainer = document.getElementById('review-personal');
-            personalContainer.innerHTML = '';
-
-            personalFields.forEach(field => {
-                const value = document.querySelector(`[name="${field}"]`).value;
-                if (value) {
-                    const label = document.querySelector(`[name="${field}"]`).previousElementSibling.textContent.replace('*', '');
-                    personalContainer.innerHTML += `
-                        <div class="review-item">
-                            <strong>${label}:</strong> ${value}
-                        </div>
-                    `;
-                }
-            });
-
-            // Academic Details
-            const academicFields = ['current_education', 'institution', 'percentage', 'year_of_passing', 'intended_degree', 'field_of_study', 'university', 'destination_country', 'course_duration', 'course_start'];
-            const academicContainer = document.getElementById('review-academic');
-            academicContainer.innerHTML = '';
-
-            academicFields.forEach(field => {
-                const value = document.querySelector(`[name="${field}"]`).value;
-                if (value) {
-                    const label = document.querySelector(`[name="${field}"]`).previousElementSibling.textContent.replace('*', '');
-                    academicContainer.innerHTML += `
-                        <div class="review-item">
-                            <strong>${label}:</strong> ${value}
-                        </div>
-                    `;
-                }
-            });
-
-            // Loan Requirements
-            const loanFields = ['total_expenses', 'loan_amount', 'existing_funds', 'repayment_plan', 'loan_tenure', 'other_financing'];
-            const loanContainer = document.getElementById('review-loan');
-            loanContainer.innerHTML = '';
-
-            loanFields.forEach(field => {
-                const value = document.querySelector(`[name="${field}"]`).value;
-                if (value) {
-                    const label = document.querySelector(`[name="${field}"]`).previousElementSibling.textContent.replace('*', '');
-                    loanContainer.innerHTML += `
-                        <div class="review-item">
-                            <strong>${label}:</strong> ${value}
-                        </div>
-                    `;
-                }
-            });
-
-            // Co-Applicants
-            const coApplicantFields = ['co1_name', 'co1_relation', 'co1_dob', 'co1_phone', 'co1_email', 'co1_occupation', 'co1_annual_income', 'co1_address', 'co2_name', 'co2_relation', 'co2_dob', 'co2_phone', 'co2_email', 'co2_occupation', 'co2_annual_income', 'co2_address'];
-            const coApplicantContainer = document.getElementById('review-coapplicant');
-            coApplicantContainer.innerHTML = '';
-
-            coApplicantFields.forEach(field => {
-                const value = document.querySelector(`[name="${field}"]`).value;
-                if (value) {
-                    const label = document.querySelector(`[name="${field}"]`).previousElementSibling.textContent.replace('*', '');
-                    coApplicantContainer.innerHTML += `
-                        <div class="review-item">
-                            <strong>${label}:</strong> ${value}
-                        </div>
-                    `;
-                }
-            });
-        }
-
-        // Form submission with Formspree
-        const form = document.getElementById('loan-application');
-        const formStatus = document.getElementById('form-status');
-        
-        async function handleSubmit(event) {
-            event.preventDefault();
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-            
-            // Show loading state
-            submitButton.textContent = 'Submitting...';
-            submitButton.disabled = true;
-            
-            try {
-                const formData = new FormData(event.target);
-                const response = await fetch(event.target.action, {
-                    method: form.method,
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    formStatus.textContent = "Thank you for your application! We'll contact you shortly.";
-                    formStatus.classList.add('success');
-                    form.reset();
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                formStatus.textContent = "Oops! There was a problem submitting your form. Please try again or contact us directly.";
-                formStatus.classList.add('error');
-            } finally {
-                // Restore button state
-                submitButton.textContent = originalButtonText;
-                submitButton.disabled = false;
-                
-                // Hide status message after 5 seconds
-                setTimeout(() => {
-                    formStatus.style.display = 'none';
-                    formStatus.classList.remove('success', 'error');
-                }, 5000);
-            }
-        }
-        
-        form.addEventListener("submit", handleSubmit);
-
-        // Add some CSS for the review section
-        const style = document.createElement('style');
-        style.textContent = `
-            .review-section {
-                margin-bottom: 2rem;
-            }
-            
-            .review-section h3 {
-                margin: 1.5rem 0 1rem;
-                color: var(--royal-blue);
-                font-size: 1.3rem;
-                padding-bottom: 0.5rem;
-                border-bottom: 1px solid var(--light-gray);
-            }
-            
-            .review-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 1rem;
-                margin-bottom: 1rem;
-            }
-            
-            .review-item {
-                padding: 0.8rem;
-                background-color: var(--light-gray);
-                border-radius: 8px;
-            }
-            
-            .checkbox {
-                display: flex;
-                align-items: flex-start;
-                margin-top: 1.5rem;
-            }
-            
-            .checkbox input {
-                margin-right: 10px;
-                margin-top: 5px;
-            }
-            
-            .checkbox label {
-                font-weight: normal;
-                line-height: 1.5;
-            }
-            
-            .checkbox a {
-                color: var(--royal-blue);
-                text-decoration: underline;
-            }
-        `;
-        document.head.appendChild(style);
+        // Initialize progress bar
+        updateProgressBar(1);
     </script>
 </body>
 </html>
