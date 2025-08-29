@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Eagle Study Loan</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --royal-blue: #0a1f44;
+            --gold: #f5c542;
+            --white: #ffffff;
+            --silver: #d4d4d4;
+            --light-blue: #1e3a8a;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--royal-blue);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--royal-blue);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        header.sticky {
+            padding: 0.7rem 2rem;
+            background-color: rgba(10, 31, 68, 0.95);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 60px;
+            margin-right: 12px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo-text {
+            color: var(--white);
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--light-blue) 100%);
+            padding: 150px 2rem 80px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23f5c542" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .breadcrumb span {
+            color: var(--gold);
+            margin: 0 10px;
+        }
+
+        /* About Content Sections */
+        .about-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--royal-blue);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            gap: 3rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Mission & Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .mv-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .mv-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .mv-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--royal-blue);
+        }
+
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--royal-blue);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--light-blue) 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--royal-blue);
+            color: var(--white);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4:after, .footer-contact h4:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--silver);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--gold);
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--gold);
+            color: var(--royal-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+
+        /* Highlighted Text */
+        .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--royal-blue);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 197, 66, 0.3);
+        }
+
+        .btn:hover {
+            background: #e6b635;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 197, 66, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-content.reverse {
+                flex-direction: column-reverse;
+            }
+            
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                gap: 0;
+                flex-direction: column;
+                background-color: var(--royal-blue);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            
+            .mv-card, .value-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/eaglestudywebsite-byte/logo/main/WhatsApp_Image_2025-08-27_at_13.46.35_fa5e1612-removebg-preview.webp" alt="Eagle Study Loan Logo" class="logo-img">
+                <span class="logo-text">Eagle Study Loan</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="apply.html" class="btn">Apply Now</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <span>/</span> <a href="about.html">About Us</a>
+        </div>
+        <h1 data-aos="fade-down">About Eagle Study Loan</h1>
+        <p data-aos="fade-up">Empowering dreams across borders with premium education financing solutions</p>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Story</h2>
+            <p>Learn about our journey and commitment to helping students achieve their global education dreams</p>
+        </div>
+
+        <div class="about-content" data-aos="fade-right">
+            <div class="about-text">
+                <h3>Pioneers in Education Financing</h3>
+                <p>Founded in 2010, Eagle Study Loan has emerged as a trusted partner for Indian students aspiring to pursue higher education abroad. Our journey began with a simple vision: to make global education accessible to deserving students regardless of their financial background.</p>
+                <p>Over the years, we've helped thousands of students achieve their dreams of studying at prestigious universities across the globe. Our commitment to transparency, flexibility, and student-centric solutions has made us one of the most preferred education loan providers in India.</p>
+                <p>We understand that every student's journey is unique, which is why we offer personalized loan solutions tailored to individual needs and circumstances.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000" alt="Students studying together">
+            </div>
+        </div>
+
+        <div class="about-content reverse" data-aos="fade-left">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&q=80&w=1000" alt="Global education concept">
+            </div>
+            <div class="about-text">
+                <h3>Our Approach</h3>
+                <p>At Eagle Study Loan, we believe that financial constraints should never be a barrier to quality education. Our approach is built on three core principles:</p>
+                <ul style="list-style: none; margin: 1.5rem 0;">
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+                        <i class="fas fa-check-circle" style="color: var(--gold); margin-right: 10px; margin-top: 5px;"></i>
+                        <span><strong>Accessibility:</strong> Simplifying the loan process to make it accessible to students from diverse backgrounds</span>
+                    </li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+                        <i class="fas fa-check-circle" style="color: var(--gold); margin-right: 10px; margin-top: 5px;"></i>
+                        <span><strong>Transparency:</strong> Maintaining complete transparency in our processes, terms, and conditions</span>
+                    </li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start;">
+                        <i class="fas fa-check-circle" style="color: var(--gold); margin-right: 10px; margin-top: 5px;"></i>
+                        <span><strong>Support:</strong> Providing end-to-end support throughout the loan journey and beyond</span>
+                    </li>
+                </ul>
+                <p>Our dedicated team of education loan experts works closely with each student to understand their specific needs and craft the perfect financial solution for their academic journey.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="about-section" style="background-color: var(--light-gray); border-radius: 15px;">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Mission & Vision</h2>
+            <p>Guiding principles that drive everything we do</p>
+        </div>
+
+        <div class="mission-vision">
+            <div class="mv-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="mv-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To empower Indian students with accessible financial solutions that remove barriers to global education, enabling them to pursue their academic dreams without compromise.</p>
+            </div>
+
+            <div class="mv-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="mv-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Our Vision</h3>
+                <p>To become the most trusted education loan partner for Indian students aspiring to study abroad, recognized for our innovation, reliability, and student-centric approach.</p>
+            </div>
+
+            <div class="mv-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="mv-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Our Promise</h3>
+                <p>To provide transparent, flexible, and hassle-free education financing solutions that support students throughout their academic journey and beyond.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="about-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Values</h2>
+            <p>The core values that define our organization and culture</p>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Student First</h3>
+                <p>Every decision we make is guided by what's best for our students and their educational aspirations.</p>
+            </div>
+
+            <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Integrity</h3>
+                <p>We maintain the highest standards of integrity in all our interactions and transactions.</p>
+            </div>
+
+            <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="value-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Innovation</h3>
+                <p>We continuously innovate to provide better financial solutions and services to our students.</p>
+            </div>
+
+            <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="value-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Empathy</h3>
+                <p>We understand the challenges students face and approach each situation with compassion.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content" data-aos="fade-up">
+            <h2>Ready to Soar to New Educational Heights?</h2>
+            <p>Join thousands of students who have achieved their global education dreams with Eagle Study Loan</p>
+            <a href="apply.html" class="btn">Apply For Loan Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="https://raw.githubusercontent.com/eaglestudywebsite-byte/logo/main/WhatsApp_Image_2025-08-27_at_13.46.35_fa5e1612-removebg-preview.webp" alt="Eagle Study Loan Logo" class="logo-img">
+                    <span class="logo-text">Eagle Study Loan</span>
+                </div>
+                <p>Eagle Study Loan is committed to helping students achieve their global education dreams through flexible and accessible financing solutions.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-phone"></i> <span class="highlight">+91 77105 11322</span></p>
+                <p><i class="fas fa-envelope"></i> <span class="highlight">info@eaglestudyloan.com</span></p>
+                <p><i class="fas fa-map-marker-alt"></i> <span class="highlight">2nd Floor Royal Hights Building,<br>Jain Nagar Crossing, Hanumangarh Road,<br>Abohar (152116), Punjab, India</span></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Eagle Study Loan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
