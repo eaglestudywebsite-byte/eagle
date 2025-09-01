@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Flag Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <style>
         :root {
             --royal-blue: #0a1f44;
@@ -307,6 +309,121 @@
             color: #666;
         }
 
+        /* Student Reviews Section */
+        .reviews {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .student-photo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .student-info {
+            margin-left: 1rem;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: var(--royal-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .student-destination {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .flag-icon {
+            margin-right: 0.5rem;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .loan-amount {
+            background: var(--gold);
+            color: var(--royal-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 10px rgba(245, 197, 66, 0.3);
+        }
+
+        .review-content {
+            position: relative;
+        }
+
+        .review-text {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .review-text:before,
+        .review-text:after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.2;
+            position: absolute;
+            font-family: Georgia, serif;
+        }
+
+        .review-text:before {
+            top: -1.5rem;
+            left: -0.5rem;
+        }
+
+        .review-text:after {
+            bottom: -2.5rem;
+            right: -0.5rem;
+        }
+
+        .review-rating {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
         /* Stats Section */
         .stats {
             background: linear-gradient(135deg, var(--royal-blue) 0%, var(--light-blue) 100%);
@@ -533,6 +650,16 @@
             .logo-text {
                 font-size: 1.3rem;
             }
+            
+            .review-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .student-info {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -558,6 +685,10 @@
             
             .logo-text {
                 font-size: 1.1rem;
+            }
+            
+            .review-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -668,6 +799,87 @@
                 </div>
                 <h3>Fast & Easy Approval</h3>
                 <p>Our streamlined process ensures quick approval and disbursement of your loan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Reviews Section -->
+    <section class="reviews">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Student Success Stories</h2>
+            <p>Hear from students who achieved their global education dreams with our support</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="review-header">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Rahul Sharma" class="student-photo">
+                    <div class="student-info">
+                        <h3 class="student-name">Rahul Sharma</h3>
+                        <div class="student-destination">
+                            <span class="flag-icon flag-icon-us"></span>
+                            Carnegie Mellon University, USA
+                        </div>
+                        <div class="loan-amount">₹42 Lakhs Approved</div>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p class="review-text">Eagle Study Loan made my dream of studying in the US a reality. Their team guided me through the entire process and helped me secure a loan without any collateral. The disbursement was quick and hassle-free.</p>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="review-header">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80" alt="Priya Patel" class="student-photo">
+                    <div class="student-info">
+                        <h3 class="student-name">Priya Patel</h3>
+                        <div class="student-destination">
+                            <span class="flag-icon flag-icon-gb"></span>
+                            University of London, UK
+                        </div>
+                        <div class="loan-amount">₹35 Lakhs Approved</div>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p class="review-text">I was worried about financing my Master's in the UK, but Eagle Study Loan provided a perfect solution. Their competitive interest rates and flexible repayment options made studying abroad affordable for me.</p>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="review-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="review-header">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Amit Kumar" class="student-photo">
+                    <div class="student-info">
+                        <h3 class="student-name">Amit Kumar</h3>
+                        <div class="student-destination">
+                            <span class="flag-icon flag-icon-ca"></span>
+                            University of Toronto, Canada
+                        </div>
+                        <div class="loan-amount">₹38 Lakhs Approved</div>
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p class="review-text">The team at Eagle Study Loan was extremely supportive throughout my loan application process. They helped me navigate the documentation and provided a loan that covered my tuition and living expenses in Canada.</p>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
